@@ -1,8 +1,14 @@
 import { connect } from 'react-redux';
 import { MenuItem } from '../components/MenuItem';
 import { removeItem, updatePrice, updateQuantity } from '../store/items/actions';
+import { selectItemTotal } from "../store/items/selectors";
+
+const mapStateToProps = (state, props) => ({
+    total: selectItemTotal(state, props)
+})
 
 const mapDispatchtoProps = (dispatch, ownProps) => {
+
     return {
         remove: () => dispatch(removeItem(ownProps.uuid)),
         updatePrice: (price) => dispatch(updatePrice(ownProps.uuid, price)),
@@ -10,4 +16,4 @@ const mapDispatchtoProps = (dispatch, ownProps) => {
     };
 };
 
-export const MenuItemContainer = connect(null, mapDispatchtoProps)(MenuItem);
+export const MenuItemContainer = connect(mapStateToProps, mapDispatchtoProps)(MenuItem);
