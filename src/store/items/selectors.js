@@ -6,6 +6,7 @@ functions that will pull each of those parts of the state tree off of our redux 
 createSelector takes 2 arguments, array of functions similar to the array in useMemo, and a fn to compute the new value. 
 
 If the return values of these function are unchanged it'll give you the same value as last by skipping the "expensive" computation
+
 */
 export const selectItem = (state, props) => {
     return state.items.find((item) => item.uuid === props.uuid);
